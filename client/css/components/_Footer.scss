@@ -1,0 +1,19 @@
+@import "../variables";
+
+.footer {
+  display: inline-block;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  padding: 10px 0;
+  background-color: transparent;
+  color: #fff;
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}

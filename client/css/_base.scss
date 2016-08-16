@@ -1,0 +1,33 @@
+html, body {
+  font-family: $font-basic;
+  background-color: $color-background;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  //background-image: url('~/img/bg.png');
+  //background-size: cover;
+  //background-position: center;
+
+}
+
+
+.container {
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+
+
+.col-lg-3 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#root {
+  position: relative;
+  overflow: auto;
+
+}

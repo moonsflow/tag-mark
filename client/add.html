@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Add</h2>
+      <form action="/api/bookmarks" method="post" id="submitForm">
+        <label for="titleInput">Title</label>
+        <input class="u-full-width" type="text" name="title" placeholder="Trending in open source" id="titleInput">
+        <label for="urlInput">URL</label>
+        <input class="u-full-width" type="text" name="url" placeholder="https://github.com/trending" id="urlInput">
+        <label for="tagsInput">Tags</label>
+        <input class="u-full-width" type="text" name="tags" placeholder="github, opensource">
+        <p>separated by comma</p>
+        <button class="button-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
