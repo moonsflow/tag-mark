@@ -1,5 +1,7 @@
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+// var ExtractTextPlugin = require('extract-text-webpack-plugin');
+// var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -39,11 +41,16 @@ module.exports = {
     loaders: [
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap=true&sourceMapContents=true')
+        // loader: ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap=true&sourceMapContents=true')
+        loaders: [ 'style', 'css?sourceMap', 'sass?sourceMap' ]
       }, {
         test: /\.jsx*$/,
         exclude: [/node_modules/, /.+\.config.js/],
-        loader: 'babel',
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015', 'stage-0'],
+          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
+        }
       }, {
         test: /\.(jpe?g|gif|png|svg)$/i,
         loader: 'url-loader',
@@ -56,6 +63,13 @@ module.exports = {
 
 
   plugins: [
+    // new BrowserSyncPlugin({
+    //   host: 'localhost',
+    //   port: 3000,
+    //   proxy: 'http://localhost:8000/'
+    // }, {
+    //   reload: false
+    // }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -68,6 +82,8 @@ module.exports = {
         'NODE_ENV': JSON.stringify('development'),
       }
     }),
-    new ExtractTextPlugin('styles.css')
+    // If I want to use sourceMap and reload css, I should't use extract text plugin.
+    // https://ihaveabackup.net/2015/08/17/sass-with-sourcemaps-webpack-and-live-reload
+    // new ExtractTextPlugin('styles.css')
   ]
 };
