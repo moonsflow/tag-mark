@@ -3,10 +3,16 @@ $item-bg-opacity: 1;
 .list-item {
   padding: 1.5em;
   box-sizing: border-box;
-  margin-bottom: 20px;
   background-color: rgba($color-primary, $item-bg-opacity);
 
-  height: 260px;
+  height: 275px;
+  @media only screen and (max-width:1180px - 1px) {
+    height: 215px;
+  }
+  @media only screen and (max-width:768px - 1px) {
+    height: 180px;
+  }
+
   box-shadow: 0 23px 39px -20px rgba(#000, 0.4);
   transition: box-shadow 0.3s ease-in-out;
 
@@ -57,6 +63,8 @@ $item-bg-opacity: 1;
       color: #fff;
       margin-right: 10px;
       border: 1px solid #fff;
+      border-radius: 0;
+      background: none;
     }
   }
 

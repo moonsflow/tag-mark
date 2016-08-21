@@ -1,0 +1,24 @@
+#write-form {
+  .tip {
+    font-size: 10px;
+  }
+  .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .button {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .input {
+    font-size: 12px;
+  }
+
+  .control:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+}
