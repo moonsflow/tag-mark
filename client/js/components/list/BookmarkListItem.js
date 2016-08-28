@@ -15,9 +15,17 @@ class BookmarkListItem extends Component {
             <h2 className="title is-4" dangerouslySetInnerHTML={{__html: this.props.data.title}} />
           </a>
 
-          <div className="tags">{this.props.data.tags.map((tag, i) => {
-            return <a href={'/tags/' + tag.slug} key={i}><span className="tag">#{tag.name}</span></a>
-          })}</div>
+          <div className="tags">
+            {this.props.data.tags.map((tag, i) => {
+              return <a href={'/tags/' + tag.slug} key={i}><span className="tag">#{tag.name}</span></a>
+            })}
+          </div>
+          <div className="ui-group">
+            <i className="fa fa-star" aria-hidden="true"></i>
+            <i className="fa fa-pencil" aria-hidden="true"></i>
+            <i className="fa fa-times" aria-hidden="true"></i>
+          </div>
+
         </div>
       </div>
     );
