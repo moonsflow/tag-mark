@@ -11,3 +11,29 @@ export function fetchBookmarks() {
       })
   }
 }
+
+export function deleteBookmarks(cuid) {
+  return function(dispatch) {
+    axios.delete(`/api/bookmarks/${cuid}`)
+      .then((response) => {
+        dispatch({ type: 'DELETE_BOOKMARK_FULFILLED', payload: cuid });
+      })
+      .catch((err) => {
+        dispatch({ type: 'DELETE_BOOKMARK_REJECTED', payload: err });
+      })
+  }
+}
+
+
+export function postBookmark(post) {
+  return function(dispatch) {
+    axios.post('/api/bookmarks', post)
+      .then((response) => {
+        console.log(response);
+        dispatch({ type: 'POST_BOOKMARK_FULFILLED', payload: response.data.bookmark });
+      })
+      .catch((err) => {
+        dispatch({ type: 'POST_BOOKMARK_REJECTED', payload: err });
+      })
+  }
+}

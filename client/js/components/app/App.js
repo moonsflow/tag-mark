@@ -6,7 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import WriteForm from '../form/WriteForm';
 
-import { fetchBookmarks } from '../../actions/bookmarksActions';
+import { fetchBookmarks, deleteBookmarks, postBookmark } from '../../actions/bookmarksActions';
 import { movePage } from '../../actions/pageActions';
 
 @connect((store) => {
@@ -23,22 +23,30 @@ class App extends Component {
     this.props.dispatch(fetchBookmarks());
   }
 
-  onMovePage(url) {
+  handleMovePage(url) {
     this.props.dispatch(movePage(url));
+  }
+
+  handleRemove(cid) {
+    this.props.dispatch(deleteBookmarks(cid))
+  }
+
+  handleBookmarkSubmit(bookmark) {
+    this.props.dispatch(postBookmark(bookmark));
   }
 
   render() {
     const { bookmarks, bookmarksFetching, bookmarksFetched, url } = this.props;
-    const body = bookmarksFetched ? <BookmarkList bookmarks={bookmarks} /> : <p>loading</p>;
+    const body = bookmarksFetched ? <BookmarkList bookmarks={bookmarks} onRemove={this.handleRemove.bind(this)} /> : <p>loading</p>;
 
     console.log(url);
 
     return (
       <div className="container">
-        <Header onMovePage={this.onMovePage.bind(this)} />
+        <Header onMovePage={this.handleMovePage.bind(this)} />
         {body}
         <Footer />
-        <WriteForm opened={(url === 'add') ? true : false} onMovePage={this.onMovePage.bind(this)}/>
+        <WriteForm opened={(url === 'add') ? true : false} onBookmarkSubmit={this.handleBookmarkSubmit.bind(this)} onMovePage={this.handleMovePage.bind(this)}/>
       </div>
     );
   }
