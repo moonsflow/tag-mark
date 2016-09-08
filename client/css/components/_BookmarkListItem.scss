@@ -2,10 +2,11 @@ $item-bg-opacity: 1;
 
 .list-item {
   position: relative;
-  padding: 1.5em;
+  padding: 20px 20px 50px;
+
   box-sizing: border-box;
   background-color: rgba($color-primary, $item-bg-opacity);
-
+  /*
   height: 275px;
   @media only screen and (max-width:1180px - 1px) {
     height: 215px;
@@ -13,6 +14,9 @@ $item-bg-opacity: 1;
   @media only screen and (max-width:768px - 1px) {
     height: 180px;
   }
+  */
+
+
 
   box-shadow: 0 23px 39px -20px rgba(#000, 0.4);
   transition: box-shadow 0.2s ease-in-out;
@@ -22,7 +26,7 @@ $item-bg-opacity: 1;
   }
 
   &.tag-react {
-    background-color: rgba($color-accent, $item-bg-opacity);
+    //background-color: rgba($color-accent, $item-bg-opacity);
   }
   &.has-star {
     background-color: rgba($color-secondary, $item-bg-opacity);
@@ -49,7 +53,7 @@ $item-bg-opacity: 1;
     font-size: 12px;
     color: #fff;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
     font-family: Georgia, Times, "Times New Roman", serif;
     font-style: italic;
@@ -57,12 +61,13 @@ $item-bg-opacity: 1;
 
   .tags {
     margin-top: 1.5em;
+    line-height: 2;
 
     .tag {
       padding: 0.5em;
       font-size: 11px;
       color: #fff;
-      margin-right: 10px;
+      margin-right: 5px;
       border: 1px solid #fff;
       border-radius: 0;
       background: none;
@@ -72,11 +77,11 @@ $item-bg-opacity: 1;
   .ui-group {
     position: absolute;
     opacity: 0;
-    bottom: 21px;
+    top: 11px;
     left: 21px;
     padding-top: 10px;
     display: inline-block;
-    border-top: 1px solid rgba(#fff, 0.5);
+    //border-top: 1px solid rgba(#fff, 0.5);
     transition: opacity 200ms ease-in-out;
 
     i.fa {
