@@ -10,7 +10,7 @@ class BookmarkListItem extends Component {
     const itemClassNameForTag = this.props.data.tags.map((tag, i) => { return `tag-${tag.slug}`}).join(' ');
 
     return (
-      <div className="" style={{width: 240 + 'px'}} key={this.props.data.cuid}>
+      <div className="column is-one-quarter" key={this.props.data.cuid}>
         <div className={`${itemClassName} ${itemClassNameForTag}`}>
           <span className="date">{moment(this.props.data.dateAdded).format('ll')}</span>
           <a href={this.props.data.url} target="_blank">
