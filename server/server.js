@@ -36,7 +36,12 @@ mongoose.connect(serverConfig.mongoURL, (err) => {
 app.use(compression());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
-app.use(Express.static(path.resolve(__dirname, '../dist')));
+if (process.env.NODE_ENV === 'development') {
+  app.use(Express.static(path.resolve(__dirname, '../client')));
+} else {
+  app.use(Express.static(path.resolve(__dirname, '../dist')));
+}
+
 app.use('/api', bookmarks);
 app.use('/api', tags);
 
@@ -50,7 +55,8 @@ const renderFullPage = (html) => {
   return `
     <!doctype html>
     <html>
-      <head>  
+      <head>
+        <title>TAGMARK</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         ${process.env.NODE_ENV === 'production' ? `<link rel='stylesheet' href='${assetsManifest['/app.css']}' />` : ''}
