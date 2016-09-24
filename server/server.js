@@ -36,12 +36,7 @@ mongoose.connect(serverConfig.mongoURL, (err) => {
 app.use(compression());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
-if (process.env.NODE_ENV === 'development') {
-  app.use(Express.static(path.resolve(__dirname, '../client')));
-} else {
-  app.use(Express.static(path.resolve(__dirname, '../dist')));
-}
-
+app.use(Express.static(path.resolve(__dirname, '../dist')));
 app.use('/api', bookmarks);
 app.use('/api', tags);
 

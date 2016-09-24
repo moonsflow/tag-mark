@@ -21,7 +21,7 @@ module.exports = {
 
   output: {
     path: __dirname,
-    filename: 'bundle.js',
+    filename: 'app.js',
     sourceMapFilename: '[file].map',
     publicPath: 'http://0.0.0.0:8000/',
     historyApiFallback: true,
