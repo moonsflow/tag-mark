@@ -8,11 +8,14 @@ class Header extends Component {
         <div className="logo u-centered">
           <h1 className="app-name">{vars.appName}</h1>
         </div>
+        <div className="search">
+          <i className="fa fa-search" aria-hidden="true"></i>
+          <input type="text" id="search-input"/>
+        </div>
         <nav className="navigation">
-          <a href="#" onClick={this.props.onMovePage.bind(null, 'bookamrk')}>Bookmarks</a>
+          {/*<a href="#" onClick={this.props.onMovePage.bind(null, 'bookamrk')}>Bookmarks</a>*/}
           <a href="#" onClick={this.props.onMovePage.bind(null, 'tags')}>Tags</a>
-          <a href="#" onClick={this.props.onMovePage.bind(null, 'add')}>+Add</a>
-          <a href="#"><i className="fa fa-search" style={{ fontSize: 14 + 'px', marginTop: 2 + 'px' }}></i></a>
+          <a href="#" onClick={this.props.onMovePage.bind(null, 'category')}>Category</a>
         </nav>
       </div>
     );

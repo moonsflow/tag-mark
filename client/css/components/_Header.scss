@@ -7,17 +7,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
 }
 
+
 .app-name {
+
   padding: 0.5em;
-  color: #fff;
+  color: $key-color;
   font-size: 14px;
   font-weight: normal;
   letter-spacing: 3px;
   line-height: 1.5;
   text-transform: uppercase;
-  border: 2px solid #fff;
+  border: 2px solid $key-color;
 }
 
 .icon {
@@ -26,14 +29,33 @@
 
 .logo {
 
-
 }
+.search {
+  margin-left: 20px;
+  border-bottom: 1px solid $key-color;
+  color: $key-color;
+  i {
+    font-size: 12px;
+  }
+}
+
+
+#search-input {
+  border: 0;
+  outline: none;
+  padding: 0.5em;
+  font-family: $font-basic;
+  font-size: 18px;
+  color: $key-color;
+}
+
+
 
 .navigation {
   a {
     display: inline-block;
     margin-right: 2.2em;
-    color: #fff;
+    color: #333;
     font-family: $font-basic;
     font-size: 14px;
     letter-spacing: 2px;

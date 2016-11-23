@@ -44,7 +44,10 @@ class App extends Component {
     return (
       <div className="container">
         <Header onMovePage={this.handleMovePage.bind(this)} />
-        {body}
+        <main>
+          {body}
+          <button id="btn-add">+</button>
+        </main>
         <Footer />
         <WriteForm opened={(url === 'add') ? true : false} onBookmarkSubmit={this.handleBookmarkSubmit.bind(this)} onMovePage={this.handleMovePage.bind(this)}/>
       </div>

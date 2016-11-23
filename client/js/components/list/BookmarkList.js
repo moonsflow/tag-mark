@@ -9,7 +9,7 @@ class BookmarkList extends Component {
   render() {
 
     return (
-      <div className="columns is-multiline" ref="list" >
+      <div className="list" ref="list" >
         {this.props.bookmarks.map((dataitem, index) => {
           return <BookmarkListItem data={dataitem} key={index} onRemove={this.props.onRemove.bind(this)} />;
         })}
