@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 
 
 // MongoDB Connection
-mongoose.Promise = global.Promise;
+mongoose.Promise = require('q').Promise;
 mongoose.connect(serverConfig.mongoURL, (err) => {
   if (err) {
     console.error('Can not connect mongodb!');
@@ -55,12 +55,12 @@ const renderFullPage = (html) => {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         ${process.env.NODE_ENV === 'production' ? `<link rel='stylesheet' href='${assetsManifest['/app.css']}' />` : ''}
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">                               
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Eczar:400,700|Work+Sans:400,500" rel="stylesheet">
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
       </head>
       <body>
         <div id="root">${html}</div>
-        <script>          
+        <script>
           ${process.env.NODE_ENV === 'production' ?
     `//<![CDATA[
           window.webpackManifest = ${JSON.stringify(chunkManifest)};
