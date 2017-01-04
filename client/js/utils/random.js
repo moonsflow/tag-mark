@@ -13,3 +13,7 @@ export function float(min, max) {
 export function bool(likelihood = 0.5) {
   return !!Math.random() < likelihood
 }
+
+export function pick(array) {
+  return array[integer(array.length)];
+}
