@@ -1,0 +1,234 @@
+@import "ease";
+
+// === BASE ============================================
+
+$base-font-size: 16;
+
+@function em-calc($pixel, $context: $base-font-size) {
+  @return $pixel / $context * 1em;
+}
+
+// === POSITION ========================================
+
+@function get($var) {
+  @if unit($var) == "" {
+    @return $var * 1px;
+  } @else {
+    @return $var;
+  }
+}
+
+@mixin size($w, $h: null) {
+  width: get($w);
+  @if $h == null {
+    height: get($w);
+  } @else {
+    height: get($h);
+  }
+}
+
+@mixin pos($args: top 0 left 0) {
+  $offsets: top right bottom left;
+  @each $o in $offsets {
+    $i: index($args, $o);
+    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
+      #{$o}: nth($args, $i + 1);
+    }
+  }
+}
+
+@mixin abs($args: top 0 left 0) {
+  position: absolute;
+  @include pos($args);
+}
+
+@mixin fixed($args: top 0 left 0) {
+  position: fixed;
+  @include pos($args);
+}
+
+@mixin absv($args: top 0) {
+  @include abs($args);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+@mixin abscenter($w, $h) {
+  @include size($w, $h);
+  @include abs(top 50% left 50%);
+  margin-left: $w * -0.5 * 1px;
+  margin-top: $h * -0.5 * 1px;
+}
+
+@mixin circle($d) {
+  @include size($d, $d);
+  border-radius: 50%;
+}
+
+// === UTIL ========================================
+
+@mixin boxsize {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin outline($color: #00f4ff) {
+  outline: 1px dashed $color;
+}
+
+@mixin bgimg($w, $h, $src, $repeat: false) {
+  @include size($w, $h);
+  background: url($src);
+  @if not $repeat {
+    background-repeat: no-repeat;
+  }
+}
+
+// Clearfix by Nicolas Gallagher
+// ==========================================================================
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+// === RESPONSIVE ==================================
+
+$break-mobile: 480px;
+$break-tablet: 768px;
+$break-laptop: 1024px;
+$break-desktop: 1200px;
+$break-wide: 1600px;
+
+@mixin responde-to($media) {
+  @if $media == "small" {
+    @media only screen and (max-width: $break-mobile - 1) {
+      @content;
+    }
+  } @else if $media == "mobile" {
+    @media only screen and (min-width: $break-mobile) and (max-width: $break-tablet - 1) {
+      @content;
+    }
+  } @else if $media == "tablet" {
+    @media only screen and (min-width: $break-tablet) and (max-width: $break-laptop - 1) {
+      @content;
+    }
+  } @else if $media == "laptop" {
+    @media only screen and (min-width: $break-laptop) and (max-width: $break-desktop - 1) {
+      @content;
+    }
+  } @else if $media == "desktop" {
+    @media only screen and (min-width: $break-desktop) and (max-width: $break-wide - 1) {
+      @content;
+    }
+  } @else if $media == "wide" {
+    @media only screen and (min-width: $break-wide) {
+      @content;
+    }
+  }
+}
+
+@mixin responde-to-maxwidth($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
+
+// === MISC ========================================
+
+@mixin transitionfix {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+}
+
+@mixin transZ {
+  -webkit-transform: translateZ(0);
+}
+
+//transform: translateZ(0)
+
+@mixin prefix($property, $value) {
+  $prefixes: webkit, moz, ms, o;
+  $vendor-prefixed-properties: transform background-clip background-size;
+  @if index($vendor-prefixed-properties, $property) {
+    @each $prefix in $prefixes {}
+  }
+  -#{$prefix}-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+// === TRANSFORM ========================================
+
+@mixin trans3d($x: 0px, $y: 0px, $z: 0px) {
+  -webkit-transform: translate3d($x, $y, $z);
+  -moz-transform: translate3d($x, $y, $z);
+  -ms-transform: translate3d($x, $y, $z);
+  -o-transform: translate3d($x, $y, $z);
+  transform: translate3d($x, $y, $z);
+}
+
+@mixin transform($transform) {
+  -webkit-transform: $transform;
+  -ms-transform: $transform;
+  transform: $transform;
+}
+
+@mixin origin($position) {
+  -ms-transform-origin: $position;
+  -webkit-transform-origin: $position;
+  transform-origin: $position;
+}
+
+// === TRANSITION ========================================
+
+@mixin transition($property, $duration: 0.5s, $easing: $ease-inout-cubic, $delay: 0s) {
+  $prefixes: webkit moz ms o;
+  $vendor-prefixed-properties: transform background-clip background-size box-shadow;
+  @if index($vendor-prefixed-properties, $property) {
+    @each $prefix in $prefixes {
+      -#{$prefix}-transition: -#{$prefix}-#{$property} $duration $easing $delay;
+    }
+
+  }
+  transition: #{$property} $duration $easing $delay;
+}
+
+@mixin transition-props($properties) {
+  $prefixes: webkit moz ms o;
+  $vendor-prefixed-properties: transform background-clip background-size box-shadow;
+  @if index($vendor-prefixed-properties, $properties) {
+    @each $prefix in $prefixes {
+      -#{$prefix}-transition-property: -#{$prefix}-#{$properties};
+    }
+
+  }
+  transition-property: $properties;
+}
+
+
+@mixin reset-box {
+  margin: 0 !important;
+  display: block !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: auto !important;
+  height: auto !important;
+}

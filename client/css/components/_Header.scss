@@ -2,21 +2,22 @@
   font-size: 12px;
   font-family: $font-basic;
   color: $color-primary;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 60px;
+  margin-bottom: 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0 20px;
 }
 
 
 .app-name {
+  width: 100%;
+  padding: 0.5em 1em;
 
-  padding: 0.5em;
   color: $key-color;
-  font-size: 14px;
-  font-weight: normal;
+  font-size: 15px;
+  font-weight: 500;
   letter-spacing: 3px;
   line-height: 1.5;
   text-transform: uppercase;
@@ -28,14 +29,15 @@
 }
 
 .logo {
-
+  min-width: 20%;
 }
 .search {
+  width: 30%;
   margin-left: 20px;
-  border-bottom: 1px solid $key-color;
+  border-bottom: 2px solid $key-color;
   color: $key-color;
   i {
-    font-size: 12px;
+    font-size: 18px;
   }
 }
 
@@ -43,6 +45,7 @@
 #search-input {
   border: 0;
   outline: none;
+  width: calc(100% - 50px);
   padding: 0.5em;
   font-family: $font-basic;
   font-size: 18px;
@@ -52,6 +55,8 @@
 
 
 .navigation {
+  display: none;
+
   a {
     display: inline-block;
     margin-right: 2.2em;
@@ -70,9 +75,3 @@
 }
 
 
-.u-centered {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
